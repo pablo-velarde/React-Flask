@@ -1,20 +1,19 @@
 from flask import Flask, jsonify
-from flask_cors import CORS
+from config import app, db
+from models import User
 
-app = Flask(__name__)
-cors = CORS(app, origins='http://localhost:5173')
-
+# Creating the routes
 @app.route('/api/users', methods=['GET'])
 def users():
-    return jsonify(
-        {
-            "users": [
-                {"name": "Liam" },
-                {"name": "Noah" },
-            ]
-        }
-    )
+    # return a list of all users and convert to json
+    users = User.query.all()
+    json_users = [user.convert_to_json() for user in users]
+
+    return jsonify({"users" : json_users})
 
 
 if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
+
     app.run(debug=True)
