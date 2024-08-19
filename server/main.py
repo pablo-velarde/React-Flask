@@ -2,7 +2,7 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
-cors = CORS(app, origins='*')
+cors = CORS(app, origins='http://localhost:5173')
 
 @app.route('/api/users', methods=['GET'])
 def users():
