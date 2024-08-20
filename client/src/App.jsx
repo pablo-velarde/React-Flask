@@ -1,6 +1,6 @@
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { useEffect } from 'react'
 import Nav from './Components/Nav.jsx'
-import './App.css'
 import axios from 'axios'
 
 function App() {
