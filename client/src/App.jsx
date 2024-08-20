@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import Nav from './Components/Nav.jsx'
 import './App.css'
 import axios from 'axios'
 
@@ -20,6 +21,7 @@ function App() {
 
   return (
     <>
+      <Nav/>
       <div className="App">
           <h1>React App</h1>
       </div>
