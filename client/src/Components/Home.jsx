@@ -1,14 +1,16 @@
 import React from "react";
 import Nav from "./Nav";
-import linkedInLogo from "../assets/Linkedin-Logo.svg";
-import twitterLogo from "../assets/Twitter-Logo.svg";
-import instagramLogo from "../assets/Instagram-Logo.svg";
+import Footer from "./Footer";
+import backgroundImage from "../assets/Background-image.jpg";
 
 const Home = () => {
+    const handleClick = () => {
+        console.log("Create Your First AI-Powered Resume")
+    }
   return (
     <>
       <Nav />
-      <div className="flex justify-center items-center h-screen bg-cover bg-center" style={{ backgroundImage: "url('/path/to/your/image.jpg')" }}>
+      <div className="flex justify-center items-center h-screen bg-cover bg-center" style={{ backgroundImage: `url(${backgroundImage})` }}>
         <div className="max-w-md mx-auto text-center">
           <h1 className="text-6xl font-bold text-gray-800 tracking-wider animate-fadeIn">
             Welcome to ResumeAI
@@ -18,8 +20,7 @@ const Home = () => {
           </p>
           <button
             className="bg-green-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded mt-8 transition-all duration-300"
-            aria-label="Create Your First AI-Powered Resume"
-          >
+            aria-label="Create Your First AI-Powered Resume">
             Create Your Resume
           </button>
         </div>
@@ -65,27 +66,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-
-      {/* Footer */}
-      <footer className="bg-gray-800 text-white mt-16 p-4 text-center">
-        <div className="mb-4">
-          <a href="/privacy-policy" className="text-white hover:underline mx-2">Privacy Policy</a>
-          <a href="/terms-of-service" className="text-white hover:underline mx-2">Terms of Service</a>
-          <a href="/contact" className="text-white hover:underline mx-2">Contact Us</a>
-        </div>
-        <div>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-            <img src={instagramLogo} alt="Instagram" className="inline-block h-6 mx-2"/>
-          </a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-            <img src={twitterLogo} alt="Twitter" className="inline-block h-6 mx-2"/>
-          </a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-            <img src={linkedInLogo} alt="LinkedIn" className="inline-block h-6 mx-2"/>
-          </a>
-        </div>
-        <p className="mt-4">&copy; 2024 ResumeAI. All rights reserved.</p>
-      </footer>
+      <Footer />
     </>
   );
 };
