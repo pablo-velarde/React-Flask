@@ -1,33 +1,34 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Nav = () => {
   return (
     <nav className="flex justify-between items-center py-4">
       <div className="flex items-center">
-        <a href="#" className="text-lg font-bold text-gray-800">
+        <p className="text-lg font-bold text-gray-800">
           ResumeAI
-        </a>
+        </p>
       </div>
       <ul className="flex items-center justify-end space-x-12 mr-8">
         <li>
-          <a href="#" className="text-gray-600 hover:text-gray-900">
-            Home
-          </a>
+            <Link to="/" className="text-gray-600 hover:text-gray-900">
+                Home
+            </Link>
         </li>
         <li>
-          <a href="#" className="text-gray-600 hover:text-gray-900">
-            About
-          </a>
+            <Link to="/about" className="text-gray-600 hover:text-gray-900">
+                About
+            </Link>
         </li>
         <li>
-          <a href="#" className="text-gray-600 hover:text-gray-900">
-            Contact
-          </a>
+            <Link to="/contact" className="text-gray-600 hover:text-gray-900">
+                Contact
+            </Link>
         </li>
         <li>
-          <a href="#" className="text-gray-600 hover:text-gray-900">
-            Login
-          </a>
+            <Link to="/login" className="text-gray-600 hover:text-gray-900">
+                Login
+            </Link>
         </li>
       </ul>
     </nav>

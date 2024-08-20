@@ -1,6 +1,7 @@
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { useEffect } from 'react'
-import Nav from './Components/Nav.jsx'
+import Home from './Components/Home.jsx'
+import Login from './Components/Login.jsx'
 import axios from 'axios'
 
 function App() {
@@ -21,10 +22,12 @@ function App() {
 
   return (
     <>
-      <Nav/>
-      <div className="App">
-          <h1>React App</h1>
-      </div>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </Router>
     </>
   )
 }
