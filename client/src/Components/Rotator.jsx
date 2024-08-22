@@ -46,7 +46,7 @@ const Rotator = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       nextSlide();
-    }, 10000); 
+    }, 10000);
 
     return () => {
       clearInterval(intervalId);
@@ -74,7 +74,7 @@ const Rotator = () => {
       <div className="flex absolute bottom-10 left-0 right-0 justify-center py-2">
         {slides.map((_, slideIndex) => (
           <div className="text-2xl cursor-pointer" key={slideIndex} onClick={() => goToSlide(slideIndex)}>
-            <RxCircle size={14} className={`mx-1 text-indigo-500 ${currentIndex === slideIndex ? 'text-indigo-500' : 'text-gray-300'} fill-current`}/>
+            <RxCircle size={14} className={`mx-1 ${currentIndex === slideIndex ? 'text-indigo-600' : 'text-gray-300'} fill-current`}/>
           </div>
         ))}
       </div>
