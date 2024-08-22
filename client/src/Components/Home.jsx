@@ -3,27 +3,13 @@ import Nav from "./Nav";
 import Footer from "./Footer";
 import { Link } from 'react-router-dom'
 import heroImage from "../assets/Background-image.jpg";
+import Rotator from "./Rotator";
 
 const Home = () => {
   return (
     <div>
       <Nav />
-      <div className="flex justify-center items-center h-screen bg-cover bg-center" style={{ backgroundImage: `url(${heroImage})` }}>
-        <div className="max-w-md mx-auto text-center">
-          <h1 className="text-6xl font-bold text-gray-800 tracking-wider animate-fadeIn">
-            Welcome to ResumeAI
-          </h1>
-          <p className="text-lg text-gray-600 mt-4">
-            This is a brief introduction to our application. We hope you find it useful!
-          </p>
-          <Link
-            to="/login"
-            className="bg-green-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded mt-8 transition-all duration-300"
-            aria-label="Create Your First AI-Powered Resume">
-            Get Started with ResumeAI
-          </Link>
-        </div>
-      </div>
+      <Rotator />
 
       {/* Features Section */}
       <div className="mt-12 text-center">

@@ -1,20 +1,27 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
-import { RxDotFilled } from 'react-icons/rx';
+import { RxDotFilled, RxCircle } from 'react-icons/rx';
+import image1 from '../assets/image1.png';
+import image2 from '../assets/image2.png';
+import image3 from '../assets/image3.png';
 
 const Rotator = () => {
   const slides = [
     {
-      url: 'image1',
-      text: "Slide 1 text"
+      url: image1,
+      header: "Bibendum facilisi mauris",
+      text: "Fusce ac scelerisque sed suspendisse eros fringilla ullamcorper nulla. Senectus faucibus venenatis felis curabitur venenatis. Id placerat nibh egestas faucibus; phasellus habitasse fusce. Auctor eros vitae consequat."
     },
     {
-      url: 'image2',
-      text: "Slide 2 text"
+      url: image2,
+      header: "Velit ultricies faucibus ",
+      text: "Pellentesque velit quis platea fermentum, rhoncus aliquam nibh. Finibus viverra facilisi efficitur ad natoque dignissim senectus faucibus. Convallis morbi tempor sapien convallis mi."
     },
     {
-      url: 'image3',
-      text: "Slide 3 text"
+      url: image3,
+      header: "Pellentesque natoque quis",
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip"
     }
   ];
 
@@ -47,26 +54,27 @@ const Rotator = () => {
   }, [currentIndex]);
 
   return (
-    <div className="max-w-[1400px] h-[780px] w-full m-auto py-16 px-4 relative group">
-      <div className="flex h-full">
-        <div className="w-1/2 h-full p-12">
-          <img src={slides[currentIndex].url} alt="Slide image" className="w-4/4 h-4/4 object-fit rounded-lg mx-auto" />
+    <div className="max-w-[1400px] w-full m-auto  px-12 relative group">
+      <div className="flex h-full justify-center">
+        <div className="w-1/2 h-full p-8 mx-4">
+          <img src={slides[currentIndex].url} alt="Slide image" className="w-full h-full object-fit rounded-lg mx-auto" />
         </div>
-        <div className="w-1/2 h-full p-12">
-          <h2 className="text-3xl font-bold">{slides[currentIndex].text}</h2>
-          {/* Add more text elements or components as needed */}
+        <div className="w-1/2 h-full p-12 mx-4">
+          <h2 className="text-2xl font-semibold text-purple-600">{slides[currentIndex].header}</h2>
+          <p className="text-base mt-4 text-gray-400 mb-8">{slides[currentIndex].text}</p>
+          <Link to="/sign-up" className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-2 px-4 rounded mt-4">Build My Resume</Link>
         </div>
       </div>
-      <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
+      <div className="hidden group-hover:block absolute top-[40%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
         <BsChevronCompactLeft onClick={prevSlide} size={30} />
       </div>
-      <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
+      <div className="hidden group-hover:block absolute top-[40%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
         <BsChevronCompactRight onClick={nextSlide} size={30} />
       </div>
-      <div className="flex top-4 justify-center py-2">
+      <div className="flex absolute bottom-10 left-0 right-0 justify-center py-2">
         {slides.map((_, slideIndex) => (
-          <div className="text-2x; cursor-pointer" key={slideIndex} onClick={() => goToSlide(slideIndex)}>
-            <RxDotFilled />
+          <div className="text-2xl cursor-pointer" key={slideIndex} onClick={() => goToSlide(slideIndex)}>
+            <RxCircle size={14} className={`mx-1 text-indigo-500 ${currentIndex === slideIndex ? 'text-indigo-500' : 'text-gray-300'} fill-current`}/>
           </div>
         ))}
       </div>
