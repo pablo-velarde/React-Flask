@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
-import { RxDotFilled, RxCircle } from 'react-icons/rx';
+import { RxCircle } from 'react-icons/rx';
 import image1 from '../assets/image1.png';
 import image2 from '../assets/image2.png';
 import image3 from '../assets/image3.png';
@@ -46,7 +46,7 @@ const Rotator = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       nextSlide();
-    }, 10000); // 15 seconds
+    }, 10000); 
 
     return () => {
       clearInterval(intervalId);

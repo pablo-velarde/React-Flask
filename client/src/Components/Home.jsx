@@ -1,8 +1,6 @@
 import React from "react";
 import Nav from "./Nav";
 import Footer from "./Footer";
-import { Link } from 'react-router-dom'
-import heroImage from "../assets/Background-image.jpg";
 import Rotator from "./Rotator";
 
 const Home = () => {
