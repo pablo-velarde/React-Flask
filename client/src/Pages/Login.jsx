@@ -1,6 +1,6 @@
 import React from "react";
-import Nav from "./Nav";
-import Footer from "./Footer";
+import Nav from "../Components/Nav.jsx";
+import Footer from "../Components/Footer.jsx";
 import { SignIn } from "@clerk/clerk-react";
 
 const Login = () => {

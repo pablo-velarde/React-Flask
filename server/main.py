@@ -1,19 +1,37 @@
-from flask import Flask, jsonify
-from config import app, db
-from models import User
+from flask import request, jsonify
+from config import app, Users
+from bson.objectid import ObjectId
 
 # Creating the routes
-@app.route('/api/users', methods=['GET'])
-def users():
-    # return a list of all users and convert to json
-    users = User.query.all()
-    json_users = [user.convert_to_json() for user in users]
+@app.route('/users', methods=['GET'])
+def get_users():
+    output = []
+    for user in Users.find():
+        output.append({
+            '_id': str(ObjectId(user['_id'])),
+            'name': user['name'],
+            'email': user['email']
+            })
+    return jsonify({'users': output})
 
-    return jsonify({"users" : json_users})
+@app.route('/users/<id>', methods=['GET'])
+def get_user(id):
+    user = Users.find_one({'_id': ObjectId(id)})
+    output = {
+        '_id': str(ObjectId(user['_id'])),
+        'name': user['name'],
+        'email': user['email']
+    }
+    return jsonify({'user': output})
+
+@app.route('/users', methods=['POST'])
+def add_user():
+    id = Users.insert_one({
+        'name': request.json['name'],
+        'email': request.json['email']
+    })
+    return jsonify({'id': str(ObjectId(id)), 'message': 'User added successfully'})
 
 
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
-
     app.run(debug=True)

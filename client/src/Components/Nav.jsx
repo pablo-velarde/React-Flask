@@ -1,14 +1,11 @@
 import Logo from '../assets/Logo.png';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useUser } from '@clerk/clerk-react';
-import { UserButton } from '@clerk/clerk-react';
+import { useUser, UserButton } from '@clerk/clerk-react';
 
 const Nav = () => {
 
   const { user, isLoaded, isSignedIn } = useUser()
-
-  let value = !isSignedIn&&isLoaded
 
   return (
     <nav className="flex justify-between items-center py-2 px-6 bg-white align-items: self-baseline">
