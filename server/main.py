@@ -10,7 +10,8 @@ def get_users():
         output.append({
             '_id': str(ObjectId(user['_id'])),
             'name': user['name'],
-            'email': user['email']
+            'email': user['email'],
+            'resumes': user['resumes']
             })
     return jsonify({'users': output})
 
@@ -20,17 +21,28 @@ def get_user(id):
     output = {
         '_id': str(ObjectId(user['_id'])),
         'name': user['name'],
-        'email': user['email']
+        'email': user['email'],
+        'resumes': user['resumes']
     }
     return jsonify({'user': output})
 
 @app.route('/users', methods=['POST'])
 def add_user():
-    id = Users.insert_one({
+    user = Users.insert_one({
         'name': request.json['name'],
-        'email': request.json['email']
+        'email': request.json['email'],
+        'resumes': request.json['resumes']
     })
-    return jsonify({'id': str(ObjectId(id)), 'message': 'User added successfully'})
+    return jsonify({'id': str(ObjectId(user.inserted_id)), 'message': 'User added successfully'})
+
+@app.route('/users/<id>', methods=['PUT'])
+def update_user(id):
+    Users.update_one({'_id': ObjectId(id)}, {'$set': {
+        'name': request.json['name'],
+        'email': request.json['email'],
+        'resumes' : request.json['resumes']
+    }})
+    return jsonify({'message': 'User updated successfully'})
 
 
 if __name__ == '__main__':
