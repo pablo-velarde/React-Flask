@@ -1,5 +1,6 @@
 Flask
 Flask-CORS
-Flask-SQLAlchemy
-Flask-Migrate
+flask-session
+redis
 pymongo
+Flask-Bcrypt

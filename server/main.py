@@ -1,5 +1,5 @@
 from flask import request, jsonify
-from config import app, Users
+from config import app, Users, bcrypt
 from bson.objectid import ObjectId
 
 # Creating the routes
@@ -26,14 +26,39 @@ def get_user(id):
     }
     return jsonify({'user': output})
 
-@app.route('/users', methods=['POST'])
+@app.route('/sign-up', methods=['POST'])
 def add_user():
-    user = Users.insert_one({
-        'name': request.json['name'],
-        'email': request.json['email'],
-        'resumes': request.json['resumes']
-    })
-    return jsonify({'id': str(ObjectId(user.inserted_id)), 'message': 'User added successfully'})
+    name = request.json['name']
+    email = request.json['email']
+    password = request.json['password']
+    resumes = request.json.get('resumes', [])
+
+    user = Users.find_one({'email': email})
+
+    if user is not None:
+        return jsonify({'error': 'Email already in use'}, 409)
+    else:
+        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+        new_user = Users.insert_one({
+            'name': name,
+            'email': email,
+            'password': hashed_password,
+            'resumes': resumes
+        })
+    return jsonify({'id': str(ObjectId(new_user.inserted_id)), 'message': 'User added successfully'})
+
+@app.route('/login', methods=['POST'])
+def login():
+    email = request.json['email']
+    password = request.json['password']
+
+    user = Users.find_one({'email': email})
+
+    if user is None or not bcrypt.check_password_hash(user['password'], password):
+        return jsonify({'error': 'Unauthorized'}, 401)
+    else:
+        return jsonify({'message': 'Logged in successfully'})
+
 
 @app.route('/users/<id>', methods=['PUT'])
 def update_user(id):
