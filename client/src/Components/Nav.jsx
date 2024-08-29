@@ -3,9 +3,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useUser, UserButton } from '@clerk/clerk-react';
 
-const Nav = () => {
+const Nav = (props) => {
 
-  const { user, isLoaded, isSignedIn } = useUser()
+  if (props.user) {
+    console.log(props.user.emailAddresses[0].emailAddress)
+    console.log(props.user.firstName)
+    console.log(props.user.lastName)
+  }
 
   return (
     <nav className="flex justify-between items-center py-2 px-6 bg-white align-items: self-baseline">
@@ -19,11 +23,11 @@ const Nav = () => {
           <Link to="/contact" className="text-gray-600 hover:text-blue-900 transition duration-300 ease-in-out">Contact</Link>
         </li>
         <li className="mr-6 flex items-center">
-          <Link to={`${!isSignedIn ? '/login' : '/dashboard'} `} className="text-gray-600 hover:text-blue-900 transition duration-300 ease-in-out">Dashboard</Link>
+          <Link to={`${!props.isSignedIn && props.isLoaded ? '/login' : '/dashboard'} `} className="text-gray-600 hover:text-blue-900 transition duration-300 ease-in-out">Dashboard</Link>
         </li>
       </ul>
       <div className="ml-auto flex items-center">
-      {!isSignedIn ?
+      {!props.isSignedIn && props.isLoaded ?
         <>
           <Link to="/login" className="text-gray-600 hover:text-blue-900 transition duration-300 ease-in-out px-4">Log In</Link>
           <Link to="/sign-up" className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-2 px-4 rounded">Sign Up</Link>

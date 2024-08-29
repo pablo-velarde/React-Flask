@@ -2,11 +2,16 @@ import React from "react";
 import Nav from "../Components/Nav";
 import Footer from "../Components/Footer";
 import Rotator from "../Components/Rotator";
+import { useUser } from '@clerk/clerk-react';
+
 
 const Home = () => {
+
+  const { user, isLoaded, isSignedIn } = useUser()
+
   return (
     <div>
-      <Nav />
+      <Nav user={user} isLoaded={isLoaded} isSignedIn={isSignedIn}/>
       <Rotator />
 
       {/* Features Section */}
