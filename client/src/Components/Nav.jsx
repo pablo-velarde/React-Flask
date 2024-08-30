@@ -1,10 +1,10 @@
 import Logo from '../assets/Logo.png';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useUser, UserButton } from '@clerk/clerk-react';
+import { UserButton } from '@clerk/clerk-react';
 
 const Nav = (props) => {
-
+  
   if (props.user) {
     console.log(props.user.emailAddresses[0].emailAddress)
     console.log(props.user.firstName)

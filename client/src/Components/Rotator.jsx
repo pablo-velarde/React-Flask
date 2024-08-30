@@ -62,7 +62,7 @@ const Rotator = () => {
         <div className="w-1/2 h-full p-12 mx-4">
           <h2 className="text-2xl font-semibold text-purple-600">{slides[currentIndex].header}</h2>
           <p className="text-base mt-4 text-gray-400 mb-8">{slides[currentIndex].text}</p>
-          <Link to="/sign-up" className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-2 px-4 rounded mt-4">Build My Resume</Link>
+          <Link to="/dashboard" className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-2 px-4 rounded mt-4">Build My Resume</Link>
         </div>
       </div>
       <div className="hidden group-hover:block absolute top-[40%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
